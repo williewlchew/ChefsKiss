@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
         // https://docs.unity3d.com/ScriptReference/Input.GetAxis.html
         float speed = 6.9f;
         transform.Translate(Input.GetAxis("Horizontal") * speed * Time.deltaTime,
-            Input.GetAxis("Vertical") * speed * Time.deltaTime,
-            0);
+            0,
+            Input.GetAxis("Vertical") * speed * Time.deltaTime);
     }
 
     private void AimWithInput()
@@ -41,10 +41,10 @@ public class PlayerController : MonoBehaviour
         Vector3 targetPosDif = new Vector3();
         
         targetPosDif.x = target.x - objectPos.x;
-        targetPosDif.y = target.y - objectPos.y;
+        targetPosDif.z = target.z - objectPos.z;
 
-        angle = Mathf.Atan2(targetPosDif.y, targetPosDif.x) * Mathf.Rad2Deg;
-        playerObject.transform.rotation = Quaternion.Euler(0, 0, angle);
+        angle = Mathf.Atan2(targetPosDif.x, targetPosDif.z) * Mathf.Rad2Deg;
+        playerObject.transform.rotation = Quaternion.Euler(0, angle, 0);
     }
 
     private void ShootInput()
