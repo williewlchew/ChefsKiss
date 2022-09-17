@@ -10,7 +10,7 @@ public class PlayerCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            //playerManager.TakeDamage();
+            playerManager.TakeDamage();
         }
     }
 }
