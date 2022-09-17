@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour
     public GameObject proj;
     public GameObject projTip;
 
+    public float speed;
+    private Vector3 normalizedInputs; 
+    private float verticalInputProcessed; 
+
     // aiming, move elsewhere?
     private Vector3 worldPosition;
     private Vector3 mousePos;
@@ -19,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 target;
     private float angle;
     
-    public void FixedUpdate()
+    public void Update()
     {
         MoveWithInput();
         AimWithInput();
@@ -29,10 +33,10 @@ public class PlayerController : MonoBehaviour
     // diagnols are broken
     private void MoveWithInput()
     {
-        // https://docs.unity3d.com/ScriptReference/Input.GetAxis.html
-        float speed = 10f;
-        rigidbody.velocity = (transform.right *  speed * Input.GetAxis("Horizontal")) +
-            (transform.forward *  speed * Input.GetAxis("Vertical"));
+        normalizedInputs = (transform.right * Input.GetAxis("Horizontal")) +
+            (transform.forward * Input.GetAxis("Vertical"));
+        normalizedInputs = Vector3.Normalize(normalizedInputs);
+        rigidbody.velocity = normalizedInputs * speed;
     }
 
     private void AimWithInput()
