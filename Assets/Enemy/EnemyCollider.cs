@@ -9,6 +9,9 @@ public class EnemyCollider : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        enemyManager.TakeDamage();
+        if(collider.gameObject.tag == "Player")
+        {        
+            enemyManager.TakeDamage();
+        }
     }
 }
