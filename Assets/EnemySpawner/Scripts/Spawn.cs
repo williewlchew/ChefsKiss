@@ -9,12 +9,16 @@ public class Spawn : MonoBehaviour
     public GameObject Apple;
     public GameObject Banana;
     public GameObject Orange;
+
     int SpawnIterations = 10;
     int SpawnsPerIteration = 5;
     int SpawnWaitTime = 2;
     float SpawnRadius = 1.5F;
     void Start()
     {
+        Apple = Resources.Load("Apple") as GameObject;
+
+
         StartCoroutine(SpawnerUL());
         StartCoroutine(SpawnerUR());
         StartCoroutine(SpawnerLL());
