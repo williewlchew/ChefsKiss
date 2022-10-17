@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwitchDoor : MonoBehaviour
 {
-    public GameObject doorObject;
+    public GameObject[] doorObjects;
     public SpriteRenderer _spriteRenderer;
     private bool switchActive = false;
 
@@ -12,8 +12,10 @@ public class SwitchDoor : MonoBehaviour
     {
         if(other.gameObject.tag == "Player"){
             switchActive = !(switchActive);
-            doorObject.SetActive(!switchActive);
             _spriteRenderer.flipX = switchActive;
+            foreach(GameObject doorObject in doorObjects) {
+                doorObject.SetActive(!switchActive);
+            }
         }
     }
 
